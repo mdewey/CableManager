@@ -14,8 +14,7 @@ export default class App extends Component {
       <Layout>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/counter" component={HelloWorld} />
-          <Route exact path="/typescript" component={HeyWorld} />
+
           <Route exact path="*" component={NotFound} />
         </Switch>
       </Layout>

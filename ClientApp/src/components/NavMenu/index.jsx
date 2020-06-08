@@ -52,16 +52,6 @@ export class NavMenu extends Component {
                     Home
                   </NavLink>
                 </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/counter">
-                    Counter
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/typescript">
-                    Typescript
-                  </NavLink>
-                </NavItem>
               </ul>
             </Collapse>
           </Container>

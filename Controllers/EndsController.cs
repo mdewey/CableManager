@@ -11,17 +11,17 @@ namespace CableManager.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class EndsController : ControllerBase
+  public class AutoCompleteController : ControllerBase
   {
     private readonly DatabaseContext _context;
 
-    public EndsController(DatabaseContext context)
+    public AutoCompleteController(DatabaseContext context)
     {
       _context = context;
     }
 
     // GET: api/Ends
-    [HttpGet]
+    [HttpGet("ends")]
     public async Task<ActionResult> GetAllTypes()
     {
       var lefts = await _context.Cables.Select(s => s.EndOne).ToListAsync();
@@ -32,6 +32,15 @@ namespace CableManager.Controllers
       all.AddRange(rights);
 
       return Ok(new { Ends = all.Distinct().OrderBy(o => o) });
+    }
+
+    // GET: api/Ends
+    [HttpGet("locations")]
+    public async Task<ActionResult> Getlocations()
+    {
+      var locations = await _context.Cables.Select(s => s.Location).ToListAsync();
+
+      return Ok(new { Locations = locations.Distinct().OrderBy(o => o) });
     }
 
 
