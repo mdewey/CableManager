@@ -9,6 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 import InboxIcon from '@material-ui/icons/Inbox'
 import DraftsIcon from '@material-ui/icons/Drafts'
+import ListOfChoices from './ListOfChoices'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,7 +27,6 @@ const useStyles = makeStyles(theme => ({
 
 const Cables = () => {
   const classes = useStyles()
-  const [selectedIndex, setSelectedIndex] = useState<Number>()
 
   const [currentEndings, setCurrentEndings] = useState<Array<string>>()
   const [currentLocation, setCurrentLocation] = useState<Array<string>>()
@@ -46,11 +46,11 @@ const Cables = () => {
     })()
   }, [])
 
-  const handleListItemClick = (
+  const penis = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    index: number
+    index: Number
   ) => {
-    setSelectedIndex(index)
+    console.log('cliiiiicked')
   }
 
   const addCable = (e: { preventDefault: () => void }) => {
@@ -83,21 +83,7 @@ const Cables = () => {
               })
             }}
           />
-          <List component="nav" aria-label="main mailbox folders">
-            {currentEndings
-              ?.filter(f => f.indexOf(newCable.endOne) >= 0)
-              .map((m, index) => {
-                return (
-                  <ListItem
-                    button
-                    selected={selectedIndex === index}
-                    onClick={event => handleListItemClick(event, index)}
-                  >
-                    <ListItemText primary={m} />
-                  </ListItem>
-                )
-              })}
-          </List>
+          <ListOfChoices items={currentEndings} searchTerm={newCable.endOne} />
         </div>
         <div>
           <TextField
@@ -116,21 +102,7 @@ const Cables = () => {
               })
             }}
           />
-          <List component="nav" aria-label="main mailbox folders">
-            {currentEndings
-              ?.filter(f => f.indexOf(newCable.endOne) >= 0)
-              .map((m, index) => {
-                return (
-                  <ListItem
-                    button
-                    selected={selectedIndex === index}
-                    onClick={event => handleListItemClick(event, index)}
-                  >
-                    <ListItemText primary={m} />
-                  </ListItem>
-                )
-              })}
-          </List>
+          <ListOfChoices items={currentEndings} searchTerm={newCable.endTwo} />
         </div>
         <div>
           <TextField
@@ -149,21 +121,10 @@ const Cables = () => {
               })
             }}
           />
-          <List component="nav" aria-label="main mailbox folders">
-            {currentLocation
-              ?.filter(f => f.indexOf(newCable.endOne) >= 0)
-              .map((m, index) => {
-                return (
-                  <ListItem
-                    button
-                    selected={selectedIndex === index}
-                    onClick={event => handleListItemClick(event, index)}
-                  >
-                    <ListItemText primary={m} />
-                  </ListItem>
-                )
-              })}
-          </List>
+          <ListOfChoices
+            items={currentLocation}
+            searchTerm={newCable.location}
+          />
         </div>
       </form>
     </>
