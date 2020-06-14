@@ -18,6 +18,7 @@ const ListOfChoices = ({ items, searchTerm }: ListProps) => {
     index: Number
   ) => {
     setSelectedIndex(index)
+    console.log({ index, thing: items[index] })
   }
 
   return (
@@ -31,6 +32,7 @@ const ListOfChoices = ({ items, searchTerm }: ListProps) => {
                 button
                 selected={selectedIndex === index}
                 onClick={event => handleClick(event, index)}
+                key={index}
               >
                 <ListItemText primary={m} />
               </ListItem>
