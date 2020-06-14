@@ -27,7 +27,7 @@ const Cables = () => {
   const [currentLocation, setCurrentLocation] = useState<Array<string>>()
 
   const context = useCableContext()
-
+  const { dispatch } = context
   const { newCable } = context.state
   console.log({ newCable })
 
@@ -72,12 +72,7 @@ const Cables = () => {
             value={newCable.endOne}
             onChange={e => {
               const { value } = e.target
-              setNewCable(p => {
-                return {
-                  ...p,
-                  endOne: value,
-                }
-              })
+              dispatch({ type: 'NEW_END_ONE', value })
             }}
           />
           <ListOfChoices items={currentEndings} searchTerm={newCable.endOne} />
@@ -91,12 +86,7 @@ const Cables = () => {
             value={newCable.endTwo}
             onChange={e => {
               const { value } = e.target
-              setNewCable(p => {
-                return {
-                  ...p,
-                  endTwo: value,
-                }
-              })
+              dispatch({ type: 'NEW_END_TWO', value })
             }}
           />
           <ListOfChoices items={currentEndings} searchTerm={newCable.endTwo} />
@@ -110,12 +100,7 @@ const Cables = () => {
             value={newCable.location}
             onChange={e => {
               const { value } = e.target
-              setNewCable(p => {
-                return {
-                  ...p,
-                  location: value,
-                }
-              })
+              dispatch({ type: 'NEW_LOCATION', value })
             }}
           />
           <ListOfChoices

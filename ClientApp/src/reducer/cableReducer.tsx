@@ -2,22 +2,26 @@
 
 import { AppContextInterface, AppState } from '../context/useCableContext'
 
-type Action = { type: 'something' }
+type Action =
+  | { type: 'NEW_END_ONE'; value: string }
+  | { type: 'NEW_END_TWO'; value: string }
+  | { type: 'NEW_LOCATION'; value: string }
 
 // action is the data we received from our dispatch
 const reducerFunction = (state: AppState, action: Action) => {
-  console.log({ action })
+  console.log({ action, state })
 
   switch (action.type) {
-    // case 'ADD':
-    //   // This is the code for a dispatched ADD
-    //   return {
-    //     inventory: state.inventory.filter(
-    //       (inventoryItem) => inventoryItem.id !== action.item.id
-    //     ),
-    //     cart: [...state.cart, action.item],
-    //   }
-    //   break
+    case 'NEW_END_ONE':
+      return { ...state, newCable: { ...state.newCable, endOne: action.value } }
+
+    case 'NEW_END_TWO':
+      return { ...state, newCable: { ...state.newCable, endTwo: action.value } }
+    case 'NEW_LOCATION':
+      return {
+        ...state,
+        newCable: { ...state.newCable, location: action.value },
+      }
 
     default:
       // Returns a new COMPLETE state
