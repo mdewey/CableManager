@@ -75,7 +75,11 @@ const Cables = () => {
               dispatch({ type: 'NEW_END_ONE', value })
             }}
           />
-          <ListOfChoices items={currentEndings} searchTerm={newCable.endOne} />
+          <ListOfChoices
+            items={currentEndings}
+            searchTerm={newCable.endOne}
+            updateKey={'END_ONE'}
+          />
         </div>
         <div>
           <TextField
@@ -89,7 +93,11 @@ const Cables = () => {
               dispatch({ type: 'NEW_END_TWO', value })
             }}
           />
-          <ListOfChoices items={currentEndings} searchTerm={newCable.endTwo} />
+          <ListOfChoices
+            items={currentEndings}
+            searchTerm={newCable.endTwo}
+            updateKey={'END_TWO'}
+          />
         </div>
         <div>
           <TextField
@@ -106,6 +114,7 @@ const Cables = () => {
           <ListOfChoices
             items={currentLocation}
             searchTerm={newCable.location}
+            updateKey={'LOCATION'}
           />
         </div>
       </form>

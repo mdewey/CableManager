@@ -5,20 +5,24 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 
+import { useCableContext } from '../context/useCableContext'
+
 type ListProps = {
   items: Array<string> | undefined
   searchTerm: string
+  updateKey: 'END_ONE' | 'END_TWO' | 'LOCATION'
 }
 
-const ListOfChoices = ({ items, searchTerm }: ListProps) => {
+const ListOfChoices = ({ items, searchTerm, updateKey }: ListProps) => {
   const [selectedIndex, setSelectedIndex] = useState<Number>()
 
-  const handleClick = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    index: Number
-  ) => {
+  const context = useCableContext()
+  const { dispatch } = context
+
+  const handleClick = (index: Number) => {
     setSelectedIndex(index)
-    console.log({ index, thing: items[index] })
+    console.log({ index, thing: items[index], updateKey })
+    dispatch({ type: `NEW_${updateKey}`, value: items[index] })
   }
 
   return (
@@ -31,7 +35,7 @@ const ListOfChoices = ({ items, searchTerm }: ListProps) => {
               <ListItem
                 button
                 selected={selectedIndex === index}
-                onClick={event => handleClick(event, index)}
+                onClick={event => handleClick(index)}
                 key={index}
               >
                 <ListItemText primary={m} />
