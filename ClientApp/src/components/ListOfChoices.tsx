@@ -7,6 +7,8 @@ import ListItemText from '@material-ui/core/ListItemText'
 
 import { useCableContext } from '../context/useCableContext'
 
+import Button from '@material-ui/core/Button'
+
 type ListProps = {
   items: Array<string> | undefined
   searchTerm: string
@@ -14,15 +16,19 @@ type ListProps = {
 }
 
 const ListOfChoices = ({ items, searchTerm, updateKey }: ListProps) => {
-  const [selectedIndex, setSelectedIndex] = useState<Number>()
+  const [selectedIndex, setSelectedIndex] = useState<Number | null>()
 
   const context = useCableContext()
   const { dispatch } = context
 
-  const handleClick = (index: Number) => {
-    setSelectedIndex(index)
-    console.log({ index, thing: items[index], updateKey })
+  const handleClick = (index: number) => {
+    setSelectedIndex(0)
     dispatch({ type: `NEW_${updateKey}`, value: items[index] })
+  }
+
+  const clearClicked = () => {
+    setSelectedIndex(null)
+    dispatch({ type: `NEW_${updateKey}`, value: '' })
   }
 
   return (
@@ -43,6 +49,11 @@ const ListOfChoices = ({ items, searchTerm, updateKey }: ListProps) => {
             )
           })}
       </List>
+      <div>
+        <Button onClick={clearClicked} variant="contained" color="secondary">
+          clear
+        </Button>
+      </div>
     </>
   )
 }

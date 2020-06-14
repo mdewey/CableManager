@@ -12,6 +12,10 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(1),
       width: '33%',
     },
+    div: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
     input: {
       width: '100%',
     },
@@ -41,13 +45,6 @@ const Cables = () => {
       setCurrentLocation(resp.data.locations)
     })()
   }, [])
-
-  const penis = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    index: Number
-  ) => {
-    console.log('cliiiiicked')
-  }
 
   const addCable = (e: { preventDefault: () => void }) => {
     e.preventDefault()
