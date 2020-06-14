@@ -23,7 +23,9 @@ const ListOfChoices = ({ items, searchTerm, updateKey }: ListProps) => {
 
   const handleClick = (index: number) => {
     setSelectedIndex(0)
-    dispatch({ type: `NEW_${updateKey}`, value: items[index] })
+    if (items) {
+      dispatch({ type: `NEW_${updateKey}`, value: items[index] })
+    }
   }
 
   const clearClicked = () => {

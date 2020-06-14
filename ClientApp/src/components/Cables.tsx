@@ -3,6 +3,7 @@ import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import ListOfChoices from './ListOfChoices'
+import Button from '@material-ui/core/Button'
 
 import { useCableContext } from '../context/useCableContext'
 
@@ -33,6 +34,7 @@ const Cables = () => {
   const context = useCableContext()
   const { dispatch } = context
   const { newCable } = context.state
+
   console.log({ newCable })
 
   useEffect(() => {
@@ -48,6 +50,8 @@ const Cables = () => {
 
   const addCable = (e: { preventDefault: () => void }) => {
     e.preventDefault()
+    console.log('doing this', { newCable })
+    axios.post('/api/Cable', { ...newCable })
   }
 
   return (
@@ -113,6 +117,11 @@ const Cables = () => {
             searchTerm={newCable.location}
             updateKey={'LOCATION'}
           />
+        </div>
+        <div>
+          <Button variant="contained" color="primary" onClick={addCable}>
+            Add!
+          </Button>
         </div>
       </form>
     </>
