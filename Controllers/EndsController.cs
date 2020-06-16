@@ -43,6 +43,15 @@ namespace CableManager.Controllers
       return Ok(new { Locations = locations.Distinct().OrderBy(o => o) });
     }
 
+    // GET: api/Ends
+    [HttpGet("notes")]
+    public async Task<ActionResult> GetNotes()
+    {
+      var notes = await _context.Cables.Select(s => s.Notes).ToListAsync();
+
+      return Ok(new { Notes = notes.Distinct().OrderBy(o => o) });
+    }
+
 
   }
 }

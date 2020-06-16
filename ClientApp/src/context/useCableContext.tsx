@@ -8,6 +8,8 @@ export interface Cable {
 
 export interface AppState {
   newCable: Cable
+  allCables: Array<Cable>
+  mostRecent: Cable
 }
 
 export interface AppContextInterface {
