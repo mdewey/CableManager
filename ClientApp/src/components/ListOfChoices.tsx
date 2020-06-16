@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button'
 type ListProps = {
   items: Array<string> | undefined
   searchTerm: string
-  updateKey: 'END_ONE' | 'END_TWO' | 'LOCATION'
+  updateKey: 'END_ONE' | 'END_TWO' | 'LOCATION' | 'NOTE'
 }
 
 const ListOfChoices = ({ items, searchTerm, updateKey }: ListProps) => {
@@ -37,7 +37,7 @@ const ListOfChoices = ({ items, searchTerm, updateKey }: ListProps) => {
     <>
       <List component="nav" aria-label="main mailbox folders">
         {items
-          ?.filter(f => f.indexOf(searchTerm) >= 0)
+          ?.filter(f => (f ? f.indexOf(searchTerm) >= 0 : false))
           .map((m, index) => {
             return (
               <ListItem

@@ -20,6 +20,7 @@ export default function() {
       endOne: '',
       endTwo: '',
       location: '',
+      note: '',
     } as Cable,
   } as AppState)
 

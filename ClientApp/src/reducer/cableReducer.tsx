@@ -6,6 +6,7 @@ type Action =
   | { type: 'NEW_END_ONE'; value: string }
   | { type: 'NEW_END_TWO'; value: string }
   | { type: 'NEW_LOCATION'; value: string }
+  | { type: 'NEW_NOTE'; value: string }
 
 // action is the data we received from our dispatch
 const reducerFunction = (state: AppState, action: Action) => {
@@ -14,6 +15,8 @@ const reducerFunction = (state: AppState, action: Action) => {
   switch (action.type) {
     case 'NEW_END_ONE':
       return { ...state, newCable: { ...state.newCable, endOne: action.value } }
+    case 'NEW_NOTE':
+      return { ...state, newCable: { ...state.newCable, note: action.value } }
 
     case 'NEW_END_TWO':
       return { ...state, newCable: { ...state.newCable, endTwo: action.value } }

@@ -47,6 +47,10 @@ const Cables = () => {
       const resp = await axios.get('/api/AutoComplete/locations')
       setCurrentLocation(resp.data.locations)
     })()
+    ;(async () => {
+      const resp = await axios.get('/api/AutoComplete/notes')
+      setCurrentNotes(resp.data.notes)
+    })()
   }, [])
 
   const addCable = (e: { preventDefault: () => void }) => {
@@ -104,7 +108,7 @@ const Cables = () => {
         <div>
           <TextField
             id="outlined-basic"
-            label="Where are you storing this?"
+            label="Any notes????"
             variant="outlined"
             color="secondary"
             value={newCable.note}
@@ -114,9 +118,9 @@ const Cables = () => {
             }}
           />
           <ListOfChoices
-            items={currentLocation}
-            searchTerm={newCable.location}
-            updateKey={'LOCATION'}
+            items={currentNotes}
+            searchTerm={newCable.note}
+            updateKey={'NOTE'}
           />
         </div>
         <div>
