@@ -36,6 +36,7 @@ const reducerFunction = (state: AppState, action: Action): AppState => {
         ...state,
         mostRecent: action.value.cable,
         totalCables: action.value.total,
+        newCable: { endOne: '', endTwo: '', note: '', location: '' },
       }
     case 'SET_COUNT':
       return {
