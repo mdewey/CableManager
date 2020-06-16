@@ -57,6 +57,11 @@ export class NavMenu extends Component {
                     Dashboard
                   </NavLink>
                 </NavItem>
+                <NavItem>
+                  <NavLink tag={Link} className="text-dark" to="/search">
+                    search
+                  </NavLink>
+                </NavItem>
               </ul>
             </Collapse>
           </Container>
