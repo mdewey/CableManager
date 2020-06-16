@@ -53,10 +53,12 @@ const Cables = () => {
     })()
   }, [])
 
-  const addCable = (e: { preventDefault: () => void }) => {
+  const addCable = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
     console.log('doing this', { newCable })
-    axios.post('/api/Cable', { ...newCable })
+    const resp = await axios.post('/api/Cable', { ...newCable })
+    const { cable, count } = resp.data
+    dispatch({ type: 'CABLE_ADDED', value: { cable, count } })
   }
 
   return (
@@ -126,7 +128,7 @@ const Cables = () => {
         <div>
           <TextField
             id="outlined-basic"
-            label="Where are you storing this?"
+            label="Where is it going?"
             variant="outlined"
             color="secondary"
             value={newCable.location}
@@ -145,6 +147,8 @@ const Cables = () => {
           <Button variant="contained" color="primary" onClick={addCable}>
             Add!
           </Button>
+          <div>total</div>
+          <div>Most recent</div>
         </div>
       </form>
     </>

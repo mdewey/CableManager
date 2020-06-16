@@ -1,15 +1,20 @@
 // state is the current value of our state object
 
-import { AppContextInterface, AppState } from '../context/useCableContext'
+import {
+  AppContextInterface,
+  AppState,
+  Cable,
+} from '../context/useCableContext'
 
 type Action =
   | { type: 'NEW_END_ONE'; value: string }
   | { type: 'NEW_END_TWO'; value: string }
   | { type: 'NEW_LOCATION'; value: string }
   | { type: 'NEW_NOTE'; value: string }
+  | { type: 'CABLE_ADDED'; value: { cable: Cable; count: number } }
 
 // action is the data we received from our dispatch
-const reducerFunction = (state: AppState, action: Action) => {
+const reducerFunction = (state: AppState, action: Action): AppState => {
   console.log({ action, state })
 
   switch (action.type) {
@@ -25,7 +30,12 @@ const reducerFunction = (state: AppState, action: Action) => {
         ...state,
         newCable: { ...state.newCable, location: action.value },
       }
-
+    case 'CABLE_ADDED':
+      return {
+        ...state,
+        mostRecent: action.value.cable,
+        totalCables: action.value.count,
+      }
     default:
       // Returns a new COMPLETE state
       // or I could throw an error
