@@ -8,7 +8,7 @@ namespace CableManager.Models
     public string EndOne { get; set; }
     public string EndTwo { get; set; }
     public string Location { get; set; }
-    public string Notes { get; set; }
+    public string Note { get; set; }
     public DateTime Created { get; set; } = DateTime.Now;
   }
 }

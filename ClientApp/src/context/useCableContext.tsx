@@ -4,6 +4,7 @@ export interface Cable {
   endOne: string
   endTwo: string
   location: string
+  note: string
 }
 
 export interface AppState {

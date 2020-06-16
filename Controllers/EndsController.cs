@@ -47,7 +47,7 @@ namespace CableManager.Controllers
     [HttpGet("notes")]
     public async Task<ActionResult> GetNotes()
     {
-      var notes = await _context.Cables.Select(s => s.Notes).ToListAsync();
+      var notes = await _context.Cables.Select(s => s.Note).ToListAsync();
 
       return Ok(new { Notes = notes.Distinct().OrderBy(o => o) });
     }

@@ -30,6 +30,7 @@ const Cables = () => {
 
   const [currentEndings, setCurrentEndings] = useState<Array<string>>()
   const [currentLocation, setCurrentLocation] = useState<Array<string>>()
+  const [currentNotes, setCurrentNotes] = useState<Array<string>>()
 
   const context = useCableContext()
   const { dispatch } = context
@@ -98,6 +99,24 @@ const Cables = () => {
             items={currentEndings}
             searchTerm={newCable.endTwo}
             updateKey={'END_TWO'}
+          />
+        </div>
+        <div>
+          <TextField
+            id="outlined-basic"
+            label="Where are you storing this?"
+            variant="outlined"
+            color="secondary"
+            value={newCable.note}
+            onChange={e => {
+              const { value } = e.target
+              dispatch({ type: 'NEW_NOTE', value })
+            }}
+          />
+          <ListOfChoices
+            items={currentLocation}
+            searchTerm={newCable.location}
+            updateKey={'LOCATION'}
           />
         </div>
         <div>
