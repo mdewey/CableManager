@@ -11,7 +11,7 @@ export interface AppState {
   newCable: Cable
   allCables: Array<Cable>
   mostRecent: Cable
-  totalCables: number
+  totalCables: number | null
 }
 
 export interface AppContextInterface {

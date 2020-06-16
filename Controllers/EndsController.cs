@@ -24,8 +24,8 @@ namespace CableManager.Controllers
     [HttpGet("ends")]
     public async Task<ActionResult> GetAllTypes()
     {
-      var lefts = await _context.Cables.Select(s => s.EndOne).ToListAsync();
-      var rights = await _context.Cables.Select(s => s.EndTwo).ToListAsync();
+      var lefts = await _context.Cables.Select(s => s.EndOne).Where(w => !String.IsNullOrWhiteSpace(w)).ToListAsync();
+      var rights = await _context.Cables.Select(s => s.EndTwo).Where(w => !String.IsNullOrWhiteSpace(w)).ToListAsync();
 
       var all = new List<string>();
       all.AddRange(lefts);
@@ -38,7 +38,7 @@ namespace CableManager.Controllers
     [HttpGet("locations")]
     public async Task<ActionResult> Getlocations()
     {
-      var locations = await _context.Cables.Select(s => s.Location).ToListAsync();
+      var locations = await _context.Cables.Select(s => s.Location).Where(w => !String.IsNullOrWhiteSpace(w)).ToListAsync();
 
       return Ok(new { Locations = locations.Distinct().OrderBy(o => o) });
     }
@@ -47,7 +47,7 @@ namespace CableManager.Controllers
     [HttpGet("notes")]
     public async Task<ActionResult> GetNotes()
     {
-      var notes = await _context.Cables.Select(s => s.Note).ToListAsync();
+      var notes = await _context.Cables.Select(s => s.Note).Where(w => !String.IsNullOrWhiteSpace(w)).ToListAsync();
 
       return Ok(new { Notes = notes.Distinct().OrderBy(o => o) });
     }

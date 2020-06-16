@@ -27,6 +27,14 @@ namespace CableManager.Controllers
       return await _context.Cables.ToListAsync();
     }
 
+    // GET: api/Cable
+    [HttpGet("count")]
+    public async Task<ActionResult> GetCount()
+    {
+
+      return Ok(new { count = await _context.Cables.CountAsync() });
+    }
+
     // GET: api/Cable/5
     [HttpGet("{id}")]
     public async Task<ActionResult<Cable>> GetCable(int id)

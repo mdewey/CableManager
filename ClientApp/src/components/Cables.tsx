@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import ListOfChoices from './ListOfChoices'
 import Button from '@material-ui/core/Button'
-
+import Total from './Total'
 import { useCableContext } from '../context/useCableContext'
 
 const useStyles = makeStyles(theme => ({
@@ -147,7 +147,8 @@ const Cables = () => {
           <Button variant="contained" color="primary" onClick={addCable}>
             Add!
           </Button>
-          <div>total</div>
+          <hr />
+          <Total />
           <div>Most recent</div>
         </div>
       </form>

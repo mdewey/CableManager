@@ -22,6 +22,7 @@ export default function() {
       location: '',
       note: '',
     } as Cable,
+    totalCables: null,
   } as AppState)
 
   const ctxt = { state, dispatch } as AppContextInterface
