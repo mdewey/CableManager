@@ -13,6 +13,7 @@ import {
   AppState,
   Cable,
 } from './context/useCableContext'
+import Dashboard from './pages/Dashboard'
 
 export default function() {
   const [state, dispatch] = useReducer(reducerFunction, {
@@ -32,7 +33,7 @@ export default function() {
       <Layout>
         <Switch>
           <Route exact path="/" component={Home} />
-
+          <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="*" component={NotFound} />
         </Switch>
       </Layout>
