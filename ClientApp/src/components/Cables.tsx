@@ -57,8 +57,8 @@ const Cables = () => {
     e.preventDefault()
     console.log('doing this', { newCable })
     const resp = await axios.post('/api/Cable', { ...newCable })
-    const { cable, count } = resp.data
-    dispatch({ type: 'CABLE_ADDED', value: { cable, count } })
+    const { cable, total } = resp.data
+    dispatch({ type: 'CABLE_ADDED', value: { cable, total } })
   }
 
   return (

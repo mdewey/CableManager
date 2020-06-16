@@ -11,7 +11,7 @@ type Action =
   | { type: 'NEW_END_TWO'; value: string }
   | { type: 'NEW_LOCATION'; value: string }
   | { type: 'NEW_NOTE'; value: string }
-  | { type: 'CABLE_ADDED'; value: { cable: Cable; count: number } }
+  | { type: 'CABLE_ADDED'; value: { cable: Cable; total: number } }
   | { type: 'SET_COUNT'; value: number }
 
 // action is the data we received from our dispatch
@@ -35,7 +35,7 @@ const reducerFunction = (state: AppState, action: Action): AppState => {
       return {
         ...state,
         mostRecent: action.value.cable,
-        totalCables: action.value.count,
+        totalCables: action.value.total,
       }
     case 'SET_COUNT':
       return {
