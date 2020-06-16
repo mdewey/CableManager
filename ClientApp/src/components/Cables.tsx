@@ -6,6 +6,7 @@ import ListOfChoices from './ListOfChoices'
 import Button from '@material-ui/core/Button'
 import Total from './Total'
 import { useCableContext } from '../context/useCableContext'
+import MostRecent from './MostRecent'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -149,7 +150,7 @@ const Cables = () => {
           </Button>
           <hr />
           <Total />
-          <div>Most recent</div>
+          <MostRecent />
         </div>
       </form>
     </>

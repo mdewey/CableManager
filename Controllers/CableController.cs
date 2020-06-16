@@ -95,7 +95,7 @@ namespace CableManager.Controllers
 
     // DELETE: api/Cable/5
     [HttpDelete("{id}")]
-    public async Task<ActionResult<Cable>> DeleteCable(int id)
+    public async Task<ActionResult> DeleteCable(int id)
     {
       var cable = await _context.Cables.FindAsync(id);
       if (cable == null)
@@ -106,7 +106,7 @@ namespace CableManager.Controllers
       _context.Cables.Remove(cable);
       await _context.SaveChangesAsync();
 
-      return cable;
+      return Ok(new { count = await _context.Cables.CountAsync(), cable }); ;
     }
 
     private bool CableExists(int id)

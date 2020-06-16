@@ -1,6 +1,7 @@
 import { createContext, useContext } from 'react'
 
 export interface Cable {
+  id: number | undefined
   endOne: string
   endTwo: string
   location: string
@@ -10,7 +11,7 @@ export interface Cable {
 export interface AppState {
   newCable: Cable
   allCables: Array<Cable>
-  mostRecent: Cable
+  mostRecent: Cable | null
   totalCables: number | null
 }
 
