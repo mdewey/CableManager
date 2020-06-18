@@ -16,6 +16,8 @@ import {
 import Dashboard from './pages/Dashboard'
 import Search from './pages/Search'
 
+import { ThemeProvider } from '@material-ui/core/styles'
+
 export default function() {
   const [state, dispatch] = useReducer(reducerFunction, {
     newCable: {

@@ -1,18 +1,23 @@
-import 'bootstrap/dist/css/bootstrap.css';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import 'bootstrap/dist/css/bootstrap.css'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
+import App from './App'
+import registerServiceWorker from './registerServiceWorker'
 
-const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
-const rootElement = document.getElementById('root');
+import { ThemeProvider } from '@material-ui/styles'
+import theme from './theme'
+
+const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href')
+const rootElement = document.getElementById('root')
 
 ReactDOM.render(
   <BrowserRouter basename={baseUrl}>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </BrowserRouter>,
-  rootElement);
+  rootElement
+)
 
-registerServiceWorker();
-
+registerServiceWorker()
