@@ -21,10 +21,10 @@ const ListOfChoices = ({ items, searchTerm, updateKey }: ListProps) => {
   const context = useCableContext()
   const { dispatch } = context
 
-  const handleClick = (index: number) => {
+  const handleClick = (index: number, end: any) => {
     setSelectedIndex(0)
     if (items) {
-      dispatch({ type: `NEW_${updateKey}`, value: items[index] })
+      dispatch({ type: `NEW_${updateKey}`, value: end })
     }
   }
 
@@ -43,7 +43,7 @@ const ListOfChoices = ({ items, searchTerm, updateKey }: ListProps) => {
               <ListItem
                 button
                 selected={selectedIndex === index}
-                onClick={event => handleClick(index)}
+                onClick={event => handleClick(index, m)}
                 key={index}
               >
                 <ListItemText primary={m} />
