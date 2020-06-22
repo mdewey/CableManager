@@ -6,6 +6,7 @@ export interface Cable {
   endTwo: string
   location: string
   note: string
+  isDeleted: boolean | undefined
 }
 
 export interface AppState {

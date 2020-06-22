@@ -16,6 +16,9 @@ import { Cable } from '../context/useCableContext'
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     table: {},
+    deletedRow: {
+      backgroundColor: 'purple',
+    },
     root: {
       '& .MuiTextField-root': {
         margin: theme.spacing(1),
@@ -34,6 +37,41 @@ const Search = () => {
     const resp = await Axios.get(`/api/search/cables?searchTerm=${searchTerm}`)
     console.log(resp.data)
     setSearchResults(resp.data.results)
+  }
+
+  const deleteCable = async (cable: Cable, index: number) => {
+    if (cable && cable.id) {
+      const resp = await Axios.delete(`/api/cable/${cable.id}`)
+      if (resp.status === 200) {
+        setSearchResults(p => {
+          cable.isDeleted = true
+          if (p) {
+            p[index] = cable
+            return [...p]
+          }
+          return p
+        })
+      }
+    }
+  }
+
+  const undoDelete = async (cable: Cable, index: number) => {
+    if (cable && cable.id) {
+      const resp = await Axios.post(`/api/cable`, {
+        ...cable,
+        id: 0,
+      })
+      if (resp.status === 200) {
+        setSearchResults(p => {
+          cable.isDeleted = false
+          if (p) {
+            p[index] = cable
+            return [...p]
+          }
+          return p
+        })
+      }
+    }
   }
 
   return (
@@ -65,15 +103,36 @@ const Search = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {searchResults?.map(cable => (
-                <TableRow key={cable.id}>
+              {searchResults?.map((cable, index) => (
+                <TableRow
+                  key={cable.id}
+                  className={cable.isDeleted ? classes.deletedRow : 'ooops'}
+                >
                   <TableCell component="th" scope="row">
                     {cable.endOne}
                   </TableCell>
                   <TableCell align="right">{cable.endTwo}</TableCell>
                   <TableCell align="right">{cable.note}</TableCell>
                   <TableCell align="right">{cable.location}</TableCell>
-                  <TableCell align="right"></TableCell>
+                  <TableCell align="right">
+                    {cable.isDeleted ? (
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => undoDelete(cable, index)}
+                      >
+                        undo
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => deleteCable(cable, index)}
+                      >
+                        X
+                      </Button>
+                    )}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
