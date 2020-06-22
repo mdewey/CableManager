@@ -39,7 +39,7 @@ const Cables = () => {
 
   console.log({ newCable })
 
-  useEffect(() => {
+  const loadAllEnds = () => {
     ;(async () => {
       const resp = await axios.get('/api/AutoComplete/ends')
       setCurrentEndings(resp.data.ends)
@@ -52,6 +52,9 @@ const Cables = () => {
       const resp = await axios.get('/api/AutoComplete/notes')
       setCurrentNotes(resp.data.notes)
     })()
+  }
+  useEffect(() => {
+    loadAllEnds()
   }, [])
 
   const addCable = async (e: { preventDefault: () => void }) => {
@@ -60,6 +63,7 @@ const Cables = () => {
     const resp = await axios.post('/api/Cable', { ...newCable })
     const { cable, total } = resp.data
     dispatch({ type: 'CABLE_ADDED', value: { cable, total } })
+    loadAllEnds()
   }
 
   return (
